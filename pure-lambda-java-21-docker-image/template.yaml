@@ -10,9 +10,7 @@ Parameters:
     Default: prod
     
 Globals:
-  Function:
-    #CodeUri: target/aws-pure-lambda-java21-docker-image-1.0.0-SNAPSHOT.jar
-    #Runtime: java21   
+  Function: 
     Timeout: 30 
     MemorySize: 1024  
     Tracing: Active

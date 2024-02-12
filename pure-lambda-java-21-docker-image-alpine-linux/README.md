@@ -20,18 +20,6 @@ Install Maven
 
 sudo yum install -y maven  
 
-or ..
-
-wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz  
-tar -xvf apache-maven-3.8.5-bin.tar.gz  
-sudo mv apache-maven-3.8.5 /opt/  
-
-
-M2_HOME='/opt/apache-maven-3.8.5'  
-PATH="$M2_HOME/bin:$PATH"  
-export PATH  
-
-
 
 
 ```bash
@@ -42,16 +30,17 @@ git clone https://github.com/Vadym79/AWSLambdaJavaDockerImage.git
 Compile and package the Java application with Maven from the root (where pom.xml is located) of the project
 mvn compile dependency:copy-dependencies -DincludeScope=runtime
 
-docker build --no-cache -t aws-pure-lambda-java21-custom-docker-image:v1 .
-docker save aws-pure-lambda-java21-custom-docker-image > aws-pure-lambda-java21-custom-docker-image
+docker build --no-cache -t aws-pure-lambda-java21-custom-docker-image-alpine:v1 .
+docker save aws-pure-lambda-java21-custom-docker-image-alpine > aws-pure-lambda-java21-custom-docker-image-alpine
 
 aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com  
 
-aws ecr create-repository --repository-name aws-pure-lambda-java21-custom-docker-image --image-scanning-configuration scanOnPush=true --region eu-central-1  
+aws ecr create-repository --repository-name aws-pure-lambda-java21-custom-docker-image-alpine --image-scanning-configuration scanOnPush=true --region eu-central-1  
 
-docker tag aws-pure-lambda-java21-custom-docker-image:v1 {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1
+docker tag aws-pure-lambda-java21-custom-docker-image-alpine:v1 {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:v1
 
-docker push {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1 
+docker push {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:v1 
+
 Deploy your application with AWS SAM
 sam deploy -g  
 ```
