@@ -26,7 +26,7 @@ Resources:
     Properties:
       StageName: !Ref Stage
       Name: AWSLambdaSpringBoot32Java21DockerImageAPI
-      Description: Api for AWSLambdaSpringBoot32Java21SpringCloudFunction
+      Description: Api for AWSLambdaSpringBoot32Java21DockerImage
       AccessLogSetting:
         DestinationArn: !Sub ${MyApiLogGroup.Arn} # This Log Group is already created within our SAM Template
         Format: "{'integrationLatency':'$context.integrationLatency', 'latency':'$context.responseLatency', 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
