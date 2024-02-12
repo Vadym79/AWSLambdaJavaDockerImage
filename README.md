@@ -39,6 +39,8 @@ export PATH
 Clone git repository locally
 git clone https://github.com/Vadym79/AWSLambdaJavaDockerImage.git
 
+For aws-pure-lambda-java21-docker-image project with public.ecr.aws/lambda/java:21 base image  
+
 Compile and package the Java application with Maven from the root (where pom.xml is located) of the project
 mvn compile dependency:copy-dependencies -DincludeScope=runtime
 
@@ -52,6 +54,23 @@ aws ecr create-repository --repository-name aws-pure-lambda-java21-custom-docker
 docker tag aws-pure-lambda-java21-custom-docker-image:v1 {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1
 
 docker push {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1 
+
+For aws-pure-lambda-java21-docker-image-alpine-linux project with amazoncorretto:21-alpine base image  
+
+Project don't need to be compiled (happens during Docker build)
+
+docker build --no-cache -t aws-pure-lambda-java21-custom-docker-image-alpine:v1 .
+docker save aws-pure-lambda-java21-custom-docker-image-alpine > aws-pure-lambda-java21-custom-docker-image-alpine
+
+aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com  
+
+aws ecr create-repository --repository-name aws-pure-lambda-java21-custom-docker-image-alpine --image-scanning-configuration scanOnPush=true --region eu-central-1  
+
+docker tag aws-pure-lambda-java21-custom-docker-image-alpine:v1 {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:v1
+
+docker push {aws_account_id}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:v1 
+
+
 Deploy your application with AWS SAM
 sam deploy -g  
 ```
