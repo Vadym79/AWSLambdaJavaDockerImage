@@ -1,7 +1,7 @@
 FROM amazoncorretto:21-alpine as base
   
 FROM base as build
-RUN yum install -y maven
+RUN sudo yum install -y maven
 WORKDIR /src
 
 # Cache and copy dependencies
