@@ -1,23 +1,8 @@
-FROM amazoncorretto:21-alpine as base
+FROM amazoncorretto:21-alpine 
   
-FROM base as build
-RUN sudo yum install -y maven
-WORKDIR /src
-
-# Cache and copy dependencies
-ADD pom.xml .
-RUN mvn dependency:go-offline dependency:copy-dependencies
-
-# Compile the function
-ADD . .
-RUN mvn package 
-
-# Copy the function artifact and dependencies onto a clean base
-FROM base
-WORKDIR /function
-
-COPY --from=build /src/target/dependency/*.jar ./
-COPY --from=build /src/target/*.jar ./
+# Copy function code and runtime dependencies from Maven layout
+COPY target/classes ./
+COPY target/dependency/* ./
     
 # Set runtime interface client as default command for the container runtime
 ENTRYPOINT [ "/usr/bin/java", "-cp", "./*", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]    
