@@ -3,7 +3,7 @@
 ## Architecture
 
 <p align="center">
-  <img src="spring-boot-3.2-with-spring-cloud-function/src/main/resources/img/app_arch.png" alt="Application Architecture"/>
+  <img src="pure-lambda-java-21-docker-image/src/main/resources/img/app_arch.png" alt="Application Architecture"/>
 </p>
 
 ## Project Description
