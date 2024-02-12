@@ -1,4 +1,4 @@
-FROM amazoncorretto:21-alpine
+FROM amazoncorretto:21-alpine as base
   
 FROM base as build
 RUN yum install -y maven
