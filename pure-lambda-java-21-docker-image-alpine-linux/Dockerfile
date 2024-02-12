@@ -2,7 +2,7 @@ FROM amazoncorretto:21-alpine as base
   
 # Configure the build environment
 FROM base as build
-RUN apk install -y maven
+RUN apk add --upgrade maven
 WORKDIR /src
 
 # Cache and copy dependencies
