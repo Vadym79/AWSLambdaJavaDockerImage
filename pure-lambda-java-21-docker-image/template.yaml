@@ -90,14 +90,10 @@ Resources:
 
   GetProductByIdFunction:
     Type: AWS::Serverless::Function
-    Metadata:
-      DockerTag: v1
-      DockerContext: .
-      Dockerfile: ./Dockerfile
     Properties:
       FunctionName: GetProductByIdWithPureJava21DockerImage
-      #Handler: software.amazonaws.example.product.handler.GetProductByIdHandler::handleRequest
       PackageType: Image
+      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1
       ImageConfig:
         Command: ["software.amazonaws.example.product.handler.GetProductByIdHandler::handleRequest"]
       Policies:
@@ -121,14 +117,10 @@ Resources:
  
   PutProductFunction:
     Type: AWS::Serverless::Function
-    Metadata:
-      DockerTag: v1
-      DockerContext: .
-      Dockerfile: ./Dockerfile
     Properties:
       FunctionName: PutProductWithPureJava21DockerImage
-      #Handler: software.amazonaws.example.product.handler.CreateProductHandler::handleRequest
       PackageType: Image
+      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1
       ImageConfig:
         Command: ["software.amazonaws.example.product.handler.CreateProductHandler::handleRequest"]
  
