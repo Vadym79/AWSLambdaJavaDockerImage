@@ -2,8 +2,7 @@ FROM amazoncorretto:21-alpine as base
   
 # Configure the build environment
 FROM base as build
-microdnf install yum
-RUN yum install -y maven
+RUN apk install -y maven
 WORKDIR /src
 
 # Cache and copy dependencies
