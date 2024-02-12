@@ -91,7 +91,7 @@ Resources:
     Properties:
       FunctionName: GetProductByIdWithPureJava21DockerImageAlpine
       PackageType: Image
-      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:latest
+      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:latest1
       ImageConfig:
         Command: ["software.amazonaws.example.product.handler.GetProductByIdHandler::handleRequest"]
       Policies:
@@ -112,13 +112,13 @@ Resources:
       LogGroupName: !Sub "/aws/lambda/${GetProductByIdFunction}"
       RetentionInDays: 7
 
- 
+
   PutProductFunction:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: PutProductWithPureJava21DockerImageAlpine
       PackageType: Image
-      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:latest
+      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:latest1
       ImageConfig:
         Command: ["software.amazonaws.example.product.handler.CreateProductHandler::handleRequest"]
  
