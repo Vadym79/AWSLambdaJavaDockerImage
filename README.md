@@ -10,15 +10,6 @@
 The code example include storing and retrieving product from the Amazon DynamoDB. I put Amazon API Gateway in front of my Lambdas.
 
 
-
-I made all the test for the following use cases:  
-
-- Lambda function without SnapStart enabled  
-- Lambda function with SnapStart enabled but without usage of Priming  
-  -- doesn't currently work for AWS Custom Runtimes, so for GraalVM Native Image    
-- Lambda function with SnapStart enabled but with usage of Priming (DynamoDB request invocation and if possible proxing the whole web request)  
-  -- doesn't currently work for AWS Custom Runtimes, so for GraalVM Native Image      
-
 # Installation and deployment
 
 Install Java Coretto 21  (https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/amazon-linux-install.html
