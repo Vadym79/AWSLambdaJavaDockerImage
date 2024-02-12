@@ -13,7 +13,6 @@ Globals:
   Function: 
     Timeout: 30 
     MemorySize: 1024  
-    Tracing: Active
     Environment:
       Variables:
         JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
@@ -24,7 +23,6 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: !Ref Stage
-      TracingEnabled: true
       Name: AWSLambdaJava21DockerImageAPI
       Description: Api for AWSLambdaJava21DockerImage
       AccessLogSetting:
