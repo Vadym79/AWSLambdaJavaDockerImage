@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  AWSLambdaJava21DockerImageTest 
+  AWSLambdaJava21DockerImageAlpineTest 
   Sample SAM Template
 
 Parameters:
@@ -11,8 +11,6 @@ Parameters:
     
 Globals:
   Function:
-    #CodeUri: target/aws-pure-lambda-java21-docker-image-1.0.0-SNAPSHOT.jar
-    #Runtime: java21   
     Timeout: 30 
     MemorySize: 1024  
     Tracing: Active
@@ -27,8 +25,8 @@ Resources:
     Properties:
       StageName: !Ref Stage
       TracingEnabled: true
-      Name: AWSLambdaJava21DockerImageAPI
-      Description: Api for AWSLambdaJava21DockerImage
+      Name: AWSLambdaJava21DockerImageAlpineAPI
+      Description: Api for AWSLambdaJava21DockerImageAlpine
       AccessLogSetting:
         DestinationArn: !Sub ${MyApiLogGroup.Arn} # This Log Group is already created within our SAM Template
         Format: "{'integrationLatency':'$context.integrationLatency', 'latency':'$context.responseLatency', 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
@@ -55,8 +53,8 @@ Resources:
       ApiStages: 
         - ApiId: !Ref MyApi
           Stage: !Ref Stage
-      UsagePlanName: AWSLambdaJava21DockerImageAPIUsagePlan
-      Description: Usage plan for AWSLambdaJava21DockerImageAPI
+      UsagePlanName: AWSLambdaJava21DockerImageAlpineAPIUsagePlan
+      Description: Usage plan for AWSLambdaJava21DockerImageAlpineAPI
       Quota:
           Limit: 500000
           Period: DAY
@@ -69,11 +67,11 @@ Resources:
     DependsOn:  
        - MyApiStage
     Properties: 
-      Name: "AWSLambdaJava21DockerImageApiKey"
-      Description: "AWSLambdaJava21DockerImage API Key"
+      Name: "AWSLambdaJava21DockerImageAlpineApiKey"
+      Description: "AWSLambdaJava21DockerImageAlpine API Key"
       Enabled: true
       GenerateDistinctId: false
-      Value: a6ZbcDefQW12BN56WEU7
+      Value: a6ZbcDefQW12BN56WECC7
       StageKeys:
         - RestApiId: !Ref MyApi
           StageName: !Ref Stage
@@ -91,9 +89,9 @@ Resources:
   GetProductByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: GetProductByIdWithPureJava21DockerImage
+      FunctionName: GetProductByIdWithPureJava21DockerImageAlpine
       PackageType: Image
-      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1
+      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:v1
       ImageConfig:
         Command: ["software.amazonaws.example.product.handler.GetProductByIdHandler::handleRequest"]
       Policies:
@@ -118,9 +116,9 @@ Resources:
   PutProductFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: PutProductWithPureJava21DockerImage
+      FunctionName: PutProductWithPureJava21DockerImageAlpine
       PackageType: Image
-      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image:v1
+      ImageUri: !Sub ${AWS::AccountId}.dkr.ecr.eu-central-1.amazonaws.com/aws-pure-lambda-java21-custom-docker-image-alpine:v1
       ImageConfig:
         Command: ["software.amazonaws.example.product.handler.CreateProductHandler::handleRequest"]
  
@@ -144,7 +142,7 @@ Resources:
   ProductsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: "AWSLambdaJava21DockerImageProductsTable"
+      TableName: "AWSLambdaJava21DockerImageAlpineProductsTable"
       PointInTimeRecoverySpecification:
          PointInTimeRecoveryEnabled: true
       AttributeDefinitions:
@@ -160,6 +158,6 @@ Resources:
       
 
 Outputs:
-  AWSLambdaJava21DockerImageApiEndpoint:
+  AWSLambdaJava21DockerImageAlpineApiEndpoint:
     Description: "API Gateway endpoint URL for Prod stage for AWS Lambda Java Snap Start"
     Value: !Sub "https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/prod/products"
