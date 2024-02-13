@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:21-latest as base
+FROM azul/zulu-openjdk:21-jdk-crac-latest as base
   
 # Configure the build environment
 FROM base as build
