@@ -25,7 +25,7 @@ WORKDIR /function
 COPY --from=build /src/target/dependency/*.jar ./
 COPY --from=build /src/target/*.jar ./
 
-RUN ln -s /usr/bin/java $JAVA_HOME
+RUN ln -s /usr/bin/java $JAVA_HOME/bin/java
 
     
 # Set runtime interface client as default command for the container runtime
