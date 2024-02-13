@@ -1,7 +1,8 @@
-FROM azul/zulu-openjdk:21 as base
+FROM azul/zulu-openjdk-alpine:21-latest as base
   
 # Configure the build environment
 FROM base as build
+RUN apk add --upgrade maven
 WORKDIR /src
 
 # Cache and copy dependencies
