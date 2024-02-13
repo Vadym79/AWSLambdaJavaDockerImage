@@ -2,7 +2,7 @@ FROM azul/zulu-openjdk:21 as base
   
 # Configure the build environment
 FROM base as build
-yum install -y maven
+RUN yum install -y maven
 WORKDIR /src
 
 # Cache and copy dependencies
