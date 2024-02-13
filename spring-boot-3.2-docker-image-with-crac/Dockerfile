@@ -2,15 +2,7 @@ FROM azul/zulu-openjdk:21 as base
   
 # Configure the build environment
 FROM base as build
-RUN wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
-RUN tar -xvf apache-maven-3.8.5-bin.tar.gz
-RUN sudo mv apache-maven-3.8.5 /opt/
-
-
-RUN M2_HOME='/opt/apache-maven-3.8.5'
-RUN PATH="$M2_HOME/bin:$PATH"
-RUN export PATH
-
+RUN apt-get install maven
 WORKDIR /src
 
 # Cache and copy dependencies
