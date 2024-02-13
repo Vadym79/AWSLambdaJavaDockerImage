@@ -1,4 +1,4 @@
-FROM amazoncorretto:21-alpine as base
+FROM azul/zulu-openjdk:21 as base
   
 # Configure the build environment
 FROM base as build
