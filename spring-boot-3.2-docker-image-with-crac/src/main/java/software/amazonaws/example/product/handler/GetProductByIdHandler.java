@@ -4,6 +4,7 @@
 package software.amazonaws.example.product.handler;
 
 import java.util.Optional;
+import java.util.Properties;
 import java.util.function.Function;
 
 import org.slf4j.Logger;
@@ -31,6 +32,8 @@ public class GetProductByIdHandler implements Function<APIGatewayProxyRequestEve
 	private static final Logger logger = LoggerFactory.getLogger(GetProductByIdHandler.class);
 
 	public APIGatewayProxyResponseEvent apply(APIGatewayProxyRequestEvent requestEvent) {
+		Properties prop = System.getProperties();
+        logger.info ("JVM Vendor : " + prop.getProperty("java.vendor") );
 		String id = requestEvent.getPathParameters().get("id");
 		Optional<Product> optionalProduct = productDao.getProduct(id);
 		try {
