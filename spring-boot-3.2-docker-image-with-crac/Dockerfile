@@ -25,11 +25,11 @@ WORKDIR /function
 COPY --from=build /src/target/dependency/*.jar ./
 COPY --from=build /src/target/*.jar ./
 
-RUN ln -s $JAVA_HOME/bin/java /usr/bin/java
-
     
 # Set runtime interface client as default command for the container runtime
-ENTRYPOINT [ "/usr/bin/java", "-cp", "./*", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]
+#ENTRYPOINT [ "/usr/bin/java", "-cp", "./*", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]
+
+ENTRYPOINT exec $JAVA_HOME/bin/java -cp ./* com.amazonaws.services.lambda.runtime.api.client.AWSLambda
 
 # Set the CMD to your handler (could also be done as a parameter override outside of the Dockerfile)
 # CMD [ "software.amazonaws.example.product.handler.GetProductByIdHandler::handleRequest" ]  
