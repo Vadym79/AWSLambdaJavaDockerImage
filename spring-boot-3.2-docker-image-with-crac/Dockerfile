@@ -26,6 +26,8 @@ COPY --from=build /src/target/dependency/*.jar ./
 COPY --from=build /src/target/*.jar ./
 
 ENV JAVA_ENTRY_HOME $JAVA_HOME/bin/java
+
+echo ${JAVA_ENTRY_HOME}
     
 # Set runtime interface client as default command for the container runtime
 ENTRYPOINT [ "echo ${JAVA_ENTRY_HOME}", "-cp", "./*", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]
