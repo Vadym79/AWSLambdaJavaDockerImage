@@ -3,11 +3,17 @@ FROM azul/zulu-openjdk:21-jdk-crac-latest as base
 # Configure the build environment
 FROM base as build
 # Install maven
-RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y sudo maven \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*  
+#RUN apt-get update \
+ #&& DEBIAN_FRONTEND=noninteractive \
+ #   apt-get install -y sudo maven \
+ #&& apt-get clean \
+ # && rm -rf /var/lib/apt/lists/*
+ 
+RUN apt-get update && \
+      apt-get -y install sudo maven
+
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+   
 WORKDIR /src
 
 # Cache and copy dependencies
