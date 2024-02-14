@@ -3,6 +3,9 @@
 
 package software.amazonaws.example.product.handler;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.function.Function;
@@ -32,6 +35,14 @@ public class GetProductByIdHandler implements Function<APIGatewayProxyRequestEve
 	private static final Logger logger = LoggerFactory.getLogger(GetProductByIdHandler.class);
 
 	public APIGatewayProxyResponseEvent apply(APIGatewayProxyRequestEvent requestEvent) {
+		
+		Path filePath = Path.of("/mnt/msg/crac/dump4.log"); 
+		try {
+			String content = Files.readString(filePath);
+			logger.info("crac dump" +content);
+		} catch (IOException e) {
+			logger.info("error reading dmup" +e.getMessage());			
+ 		}
 		
 		Properties prop = System.getProperties();
         logger.info ("JVM Vendor : " + prop.getProperty("java.vendor") );
