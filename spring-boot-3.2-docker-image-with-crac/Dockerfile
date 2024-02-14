@@ -6,6 +6,7 @@ FROM base as build
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive \
     apt-get install -y maven \
+    apt-get install sudo  \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*  
 WORKDIR /src
@@ -25,7 +26,6 @@ WORKDIR /function
 COPY --from=build /src/target/dependency/*.jar ./
 COPY --from=build /src/target/*.jar ./
 
-RUN  apt-get install sudo
 RUN  sudo chown root:root $JAVA_HOME/lib/criu
 RUN  sudo chmod u+s $JAVA_HOME/lib/criu
     
