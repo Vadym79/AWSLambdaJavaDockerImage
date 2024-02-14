@@ -25,8 +25,9 @@ WORKDIR /function
 COPY --from=build /src/target/dependency/*.jar ./
 COPY --from=build /src/target/*.jar ./
 
-RUN  chown root:root $JAVA_HOME/lib/criu
-RUN  chmod u+s $JAVA_HOME/lib/criu
+RUN  apt install sudo
+RUN  sudo chown root:root $JAVA_HOME/lib/criu
+RUN  sudo chmod u+s $JAVA_HOME/lib/criu
     
 # Set runtime interface client as default command for the container runtime
 #ENTRYPOINT [ "/usr/bin/java", "-cp", "./*", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]
