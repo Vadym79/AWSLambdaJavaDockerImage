@@ -25,7 +25,7 @@ WORKDIR /function
 COPY --from=build /src/target/dependency/*.jar ./
 COPY --from=build /src/target/*.jar ./
 
-RUN  apt install sudo
+RUN  apt-get install sudo
 RUN  sudo chown root:root $JAVA_HOME/lib/criu
 RUN  sudo chmod u+s $JAVA_HOME/lib/criu
     
