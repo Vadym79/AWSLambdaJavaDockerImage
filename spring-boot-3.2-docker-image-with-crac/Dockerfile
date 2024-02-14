@@ -5,8 +5,7 @@ FROM base as build
 # Install maven
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y maven \
-    apt-get install sudo  \
+    apt-get install -y maven sudo \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*  
 WORKDIR /src
