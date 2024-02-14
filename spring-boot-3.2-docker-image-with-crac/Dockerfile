@@ -12,7 +12,7 @@ FROM base as build
 RUN apt-get update && \
       apt-get -y install sudo maven
 
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+#RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 RUN sudo chown root:root $JAVA_HOME/lib/criu
 RUN sudo chmod u+s $JAVA_HOME/lib/criu
    
