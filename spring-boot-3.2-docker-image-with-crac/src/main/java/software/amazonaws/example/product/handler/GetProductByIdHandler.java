@@ -36,6 +36,7 @@ public class GetProductByIdHandler implements Function<APIGatewayProxyRequestEve
 
 	public APIGatewayProxyResponseEvent apply(APIGatewayProxyRequestEvent requestEvent) {
 		
+		/*
 		Path filePath = Path.of("/mnt/msg/crac/dump4.log"); 
 		try {
 			String content = Files.readString(filePath);
@@ -43,7 +44,7 @@ public class GetProductByIdHandler implements Function<APIGatewayProxyRequestEve
 		} catch (IOException e) {
 			logger.info("error reading dmup" +e.getMessage());			
  		}
-		
+		*/
 		Properties prop = System.getProperties();
         logger.info ("JVM Vendor : " + prop.getProperty("java.vendor") );
 		String id = requestEvent.getPathParameters().get("id");
