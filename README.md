@@ -1,5 +1,7 @@
 # Explore ways to run Serverless application on AWS Lambda with Java 21 based Docker Container Image 
 
+Please follow my article series [Lambda function using Docker Container Image](https://dev.to/vkazulkin/series/34789) for the detailed explanation.
+
 ## Architecture
 
 <p align="center">
